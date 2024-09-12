@@ -20,7 +20,7 @@ pip install pymysql
 Set Up the Database:
 
 Create a new database in MySQL named medicalstore.
-Create the medicines table using the following SQL command:
+Create three tables using the following SQL command:
 
 CREATE TABLE medicines (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -31,6 +31,21 @@ CREATE TABLE medicines (
     manufacturer_name VARCHAR(100),
     expdate DATE
 );
+CREATE TABLE customers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    phone VARCHAR(15),
+    email VARCHAR(100)
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customers(id)
+);
+
 Configure Database Connection:
 
 Open the main.py file.
